@@ -12,7 +12,23 @@ pip install .
 
 ## Usage
 
-Type ```pyndeks --help```.
+```sh
+pyndeks [-h] [--ignore IGNORE] [--baseurl BASEURL] topdir
+
+Index generator.
+
+positional arguments:
+  topdir             Top directory to index.
+
+options:
+  -h, --help         show this help message and exit
+  --ignore IGNORE    File containing ignored files.
+  --baseurl BASEURL  Base URL for links.
+```
+
+## License
+
+Pyndeks is licensed under the [MIT license](LICENSE).
 
 ## Similar projects
 
