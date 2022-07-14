@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index of {{ dir }}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" integrity="sha256-YW7U7x59rUPZ3DWzQKbalM/9j2Cp8wapJVQPRxL4w1k=" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="p-5" style="max-width: 800px; margin: 0 auto;">
+    <nav style="font-size: larger;">
+      <ol class="breadcrumb">
+      {%- for d in dir.split('/') %}
+      {%- set t = '<i class="bi bi-house mx-2"></i>' if loop.first else d %}
+      {%- set href = '/'.join(dir.split('/')[:loop.index]) %}
+        {% if not loop.last -%}
+        <li class="breadcrumb-item">
+          <a style="text-decoration: none" href="{{baseurl}}/{{ href }}/">{{ t }}</a>
+        </li>
+        {%- else -%}
+        <li class="breadcrumb-item active">
+          {{ t }}
+        </li>
+        {%- endif -%}
+        {%- endfor %}
+      </ol>
+    </nav>
+    <div class="list-group">
+      {%- if dir != '.' %}
+      <a class="list-group-item list-group-item-action" href="{{ baseurl }}/{{ dir }}/..">
+        <i class="bi bi-arrow-90deg-up mx-2"></i>
+      </a>
+      {%- endif -%}
+      {%- for d in dirs|natsort %}
+      <a class="list-group-item list-group-item-action" href="{{ baseurl }}/{{ dir }}/{{ d }}">
+        <i class="bi bi-folder mx-2"></i>{{ d }}
+      </a>
+      {%- endfor -%}
+      {% for f in files|natsort %}
+      <a class="list-group-item list-group-item-action" href="{{ baseurl }}/{{ dir }}/{{ f }}">
+        <i class="bi bi-file mx-2"></i>{{ f }}
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</body>
+
+<!-- Generated at {{ now() }} UTC -->
+
+</html>
