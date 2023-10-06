@@ -12,7 +12,7 @@ pip install .
 
 ## Usage
 
-```sh
+```text
 pyndeks [-h] [--ignore IGNORE] [--baseurl BASEURL] topdir
 
 Index generator.
